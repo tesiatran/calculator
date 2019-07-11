@@ -45,10 +45,10 @@ function operatorButtonHandler(event){
    updateDisplay();
 
    calculationArray.push(stringNumberToPush);
-   console.log(calculationArray);
+   // console.log(calculationArray);
 
    calculationArray.push(inputtedOperator);
-   console.log(calculationArray);
+   // console.log(calculationArray);
 
    stringNumberToPush = "";
 }
@@ -60,7 +60,14 @@ function equalsButtonHandler(event){
 
    stringNumberToPush = "";
    displayArray = [];
-   console.log(calculationArray);
+   // console.log(calculationArray);
+
+   var answer = calculate(calculationArray[0], calculationArray[2], calculationArray[1]);
+   // console.log(answer);
+
+   displayArray.push(answer);
+   
+   updateDisplay();
 }
 
 function updateDisplay(){
@@ -68,4 +75,28 @@ function updateDisplay(){
    // console.log(displayText);
 
    $("#display-text").text(displayText);
+}
+
+function calculate(num1, num2, operator){
+   var number1 = parseFloat(num1);
+   var number2 = parseFloat(num2);
+   // console.log(number1);
+   // console.log(number2);
+
+   var result = null;
+
+   switch(operator){
+      case "+":
+         result = number1 + number2;
+         break;
+      case "-":
+         result = number1 - number2;
+         break;
+      case "*":
+         result = number1 * number2;
+         break;
+      case "/":
+         result = number1 / number2;
+   }
+   return result;
 }
